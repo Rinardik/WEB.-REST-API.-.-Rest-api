@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+     <head>
+         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+     </head>
+     <div class="center-container">
+         <h2>Оформление каюты</h2>
+         <table>
+             <thead>
+                 <tr>
+                     <th>Цвет стен</th>
+                     <th>Эмблема</th>
+                 </tr>
+             </thead>
+             <tbody>
+                 <tr>
+                     {% if 'male' in gender.lower() %}
+                         {% if age < 21 %}
+                             <td class="half-screen_lower_man"></td>
+                             <td><img src="/static/img/lower_man.jpg" alt=""></td>
+                         {% else %}
+                             <td class="half-screen_big_man"></td>
+                             <td><img src="/static/img/big_man.jpg" alt=""></td>
+                         {% endif %}
+                     {% else %}
+                         {% if age < 21 %}
+                             <td class="half-screen_lower_women"></td>
+                             <td><img src="/static/img/lower_women.jpg" alt=""></td>
+                         {% else %}
+                             <td class="half-screen_big_women"></td>
+                             <td><img src="/static/img/big_women.jpg" alt=""></td>
+                         {% endif %}
+                     {% endif %}
+                 </tr>
+               </tbody>
+         </table>
+     </div>
+ {% endblock %}

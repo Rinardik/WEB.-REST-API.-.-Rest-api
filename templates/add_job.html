@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}Добавить работу{% endblock %}
+
+{% block content %}
+<h1>Добавить работу</h1>
+
+<form method="POST" action="">
+    {{ form.hidden_tag() }}
+
+    <div class="mb-3">
+        {{ form.job_title.label(class="form-label") }}
+        {{ form.job_title(class="form-control") }}
+        {% for error in form.job_title.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.team_leader_id.label(class="form-label") }}
+        {{ form.team_leader_id(class="form-select") }}
+        {% for error in form.team_leader_id.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.work_size.label(class="form-label") }}
+        {{ form.work_size(class="form-control") }}
+        {% for error in form.work_size.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.collaborators.label(class="form-label") }}
+        {{ form.collaborators(class="form-control", rows="3") }}
+        {% for error in form.collaborators.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3">
+        {{ form.category_id.label(class="form-label") }}
+        {{ form.category_id(class="form-select") }}
+        {% for error in form.category_id.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
+
+    <div class="mb-3 form-check">
+        {{ form.is_finished(class="form-check-input") }}
+        {{ form.is_finished.label(class="form-check-label") }}
+        {% for error in form.is_finished.errors %}
+            <span class="text-danger">{{ error }}</span>
+        {% endfor %}
+    </div>
+
+    <p>{{ form.submit(class="btn btn-primary") }}</p>
+</form>
+{% endblock %}
