@@ -5,7 +5,6 @@ from sqlalchemy.ext.declarative import declarative_base
 SqlAlchemyBase = declarative_base()
 __factory = None
 
-
 def global_init(db_file):
     """
     Инициализация подключения к базе данных

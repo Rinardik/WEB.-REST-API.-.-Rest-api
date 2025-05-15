@@ -40,6 +40,13 @@
         <span style="color: red;">[{{ error }}]</span>
         {% endfor %}
     </p>
+    <p>
+        {{ form.city_from.label }}<br>
+        {{ form.city_from(size=32) }}<br>
+        {% for error in form.city_from.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
     <p>{{ form.submit(class="btn btn-primary") }}</p>
 </form>
 {% endblock %}

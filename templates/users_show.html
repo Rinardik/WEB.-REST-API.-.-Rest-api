@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+<h2>Родной город: {{ user.address }}</h2>
+
+<img src="{{ url_for('static', filename=map_filename) }}" alt="Карта родного города" style="width: 600px; height: 400px;">
+
+{% endblock %}

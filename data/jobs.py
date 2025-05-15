@@ -11,5 +11,5 @@ class Job(SqlAlchemyBase):
     collaborators = Column(String)
     is_finished = Column(Boolean, default=False)
     category_id = Column(Integer, ForeignKey('categories.id'))
-    team_leader = relationship("User", back_populates="jobs")
+    user = relationship("User", back_populates="jobs")
     category = relationship("Category")

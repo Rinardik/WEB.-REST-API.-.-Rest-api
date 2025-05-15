@@ -1,20 +1,27 @@
-from .db_session import SqlAlchemyBase
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
-import sqlalchemy
+from sqlalchemy import Column, Integer, String
+from .db_session import SqlAlchemyBase
 from sqlalchemy.orm import relationship
 
-class User(SqlAlchemyBase, UserMixin):
+class User(UserMixin, SqlAlchemyBase):
     __tablename__ = 'users'
+    id = Column(Integer, primary_key=True)
+    surname = Column(String)
+    name = Column(String)
+    age = Column(Integer)
+    position = Column(String)
+    speciality = Column(String)
+    address = Column(String)
+    email = Column(String, unique=True)
+    hashed_password = Column(String)
+    city_from = Column(String)
+    jobs = relationship("Job", back_populates="user")
 
-    id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True)
-    surname = sqlalchemy.Column(sqlalchemy.String, nullable=False)
-    name = sqlalchemy.Column(sqlalchemy.String, nullable=False)
-    email = sqlalchemy.Column(sqlalchemy.String, unique=True, index=True, nullable=False)
-    password_hash = sqlalchemy.Column(sqlalchemy.String, nullable=False)
-    jobs = relationship("Job", back_populates="team_leader")
     def set_password(self, password):
-        self.password_hash = generate_password_hash(password)
+        self.hashed_password = generate_password_hash(password)
 
     def check_password(self, password):
-        return check_password_hash(self.password_hash, password)
+        if not self.hashed_password:
+            return False
+        return check_password_hash(self.hashed_password, password)

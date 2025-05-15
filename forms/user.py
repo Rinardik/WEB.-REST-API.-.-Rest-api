@@ -10,4 +10,5 @@ class RegisterForm(FlaskForm):
                                             EqualTo('password')])
     name = StringField('Name', validators=[DataRequired()])
     surname = StringField('Surname', validators=[DataRequired()])
+    city_from = StringField('city_from', validators=[DataRequired()])
     submit = SubmitField('Register')
